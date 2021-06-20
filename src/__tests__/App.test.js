@@ -68,17 +68,17 @@ describe('<App /> integration', () => {
 
   test('App passes "number" state as a prop to NumberOfEvents', () => {
     const AppWrapper = mount(<App />);
-    const NumberInputState = AppWrapper.state('number');
+    const NumberInputState = AppWrapper.state('numberOfEvents');
     expect(NumberInputState).not.toEqual(undefined);
-    expect(AppWrapper.find(NumberOfEvents).props().number).toEqual(NumberInputState);
+    expect(AppWrapper.find(NumberOfEvents).props().numberOfEvents).toEqual(NumberInputState);
     AppWrapper.unmount();
   });
 
   test('App passes "number" state as a prop to EventList', () => {
     const AppWrapper = mount(<App />);
-    const NumberInputState = AppWrapper.state('number');
+    const NumberInputState = AppWrapper.state('numberOfEvents');
     expect(NumberInputState).not.toEqual(undefined);
-    expect(AppWrapper.find(EventList).props().number).toEqual(NumberInputState);
+    expect(AppWrapper.find(EventList).props().numberOfEvents).toEqual(NumberInputState);
     AppWrapper.unmount();
   });
 

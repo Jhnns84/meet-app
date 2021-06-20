@@ -10,7 +10,7 @@ class App extends Component {
   state = {
     events: [],
     locations: [], 
-    number: '', 
+    numberOfEvents: '', 
   }
 
   componentDidMount() {
@@ -26,7 +26,7 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateEvents = (location) => {
+  updateEvents = (location, eventCount) => {
     getEvents().then((events) => {
       const locationEvents = (location === 'all') ?
       events :
@@ -41,8 +41,8 @@ class App extends Component {
     return (
       <div className="App"> 
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-        <NumberOfEvents number={this.state.number} />
-        <EventList events={this.state.events} number={this.state.number} />
+        <NumberOfEvents numberOfEvents={this.state.numberOfEvents} />
+        <EventList events={this.state.events} numberOfEvents={this.state.numberOfEvents} />
       </div>
     );
   }

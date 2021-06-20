@@ -17,16 +17,13 @@ describe('NumberOfEvents /> component', () => {
   });
 
   test('render number input correctly', () => {
-    const number = NumberWrapper.state('number');
-    expect(NumberWrapper.find('.NumberInput').prop('value')).toBe(number);
+    const numberOfEvents = NumberWrapper.state('numberOfEvents');
+    expect(NumberWrapper.find('.NumberInput').prop('value')).toBe(numberOfEvents);
   });
 
   test('change state when number input changes', () => {
-    // NumberWrapper.setState({
-    //   number: '32'
-    // });
     const eventObject = { target: { value: '15'}};
     NumberWrapper.find('.NumberInput').simulate('change', eventObject);
-    expect(NumberWrapper.state('number')).toBe('15');
+    expect(NumberWrapper.state('numberOfEvents')).toBe('15');
   });
 });
