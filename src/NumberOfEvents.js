@@ -21,6 +21,7 @@ class NumberOfEvents extends Component {
   render() {
     return (
       <div className="NumberOfEvents">
+      <label>Choose how many events to display</label>
         <input
           type="number" 
           className="NumberInput"

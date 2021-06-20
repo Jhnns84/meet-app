@@ -6,13 +6,7 @@ class Event extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
-      summary: '',
-      date: '',
-      timezone: '',
-      location: '', 
       showDetails: false, 
-      description: ''
     };
     
     this.buttonToggle = this.buttonToggle.bind(this);
@@ -30,17 +24,18 @@ class Event extends Component {
   // };
 
   render() {
+    const { event } = this.props;
     return (
-    <div className="Event">
-      <h1 className="summary">{this.state.summary}</h1>
-      <h4 className="date">{this.state.date}</h4>
-      <h4 className="timezone">{this.state.timezone}</h4>
-      <h4 className="location">{this.state.location}</h4>
-      <button className="details-button" onClick={this.buttonToggle}>
+    <div className="event">
+      <h1 className="summary">{event.summary}</h1>
+      <p className="date">Start Date: {event.start.dateTime}</p>
+      <p className="timezone">Timezone: {event.start.timeZone}</p>
+      <p className="location">Location: {event.location}</p>
+      <button className="details-btn" onClick={this.buttonToggle}>
         show/hide details
       </button>
         {this.state.showDetails && (
-          <p className="description">{this.state.description}</p>
+          <p className="description">{event.description}</p>
         )}
     </div>
 
