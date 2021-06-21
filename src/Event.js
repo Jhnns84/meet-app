@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card'
 
 import { mockData } from './mock-data';
 
@@ -27,18 +28,20 @@ class Event extends Component {
   render() {
     const { event } = this.props;
     return (
-    <div className="event">
-      <h1 className="summary">{event.summary}</h1>
-      <p className="date">Start Date: {event.start.dateTime}</p>
-      <p className="timezone">Timezone: {event.start.timeZone}</p>
-      <p className="location">Location: {event.location}</p>
-      <button className="details-btn" onClick={this.buttonToggle}>
-        show/hide details
-      </button>
-        {this.state.showDetails && (
-          <p className="description">{event.description}</p>
-        )}
-    </div>
+      <Card className="event">
+        <Card.Body>
+        <Card.Title className="summary">{event.summary}</Card.Title>
+          <p className="date">Start Date: {event.start.dateTime}</p>
+          <p className="timezone">Timezone: {event.start.timeZone}</p>
+          <p className="location">Location: {event.location}</p>
+          <Button variant="dark" className="details-btn" onClick={this.buttonToggle}>
+            show/hide details
+          </Button>
+            {this.state.showDetails && (
+              <p className="description">{event.description}</p>
+            )}
+            </Card.Body>
+        </Card>
 
     );
   }

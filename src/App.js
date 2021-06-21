@@ -7,6 +7,10 @@ import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
 
+import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 class App extends Component {
   state = {
     events: [],
@@ -53,8 +57,24 @@ class App extends Component {
   render() {
     return (
       <div className="App"> 
-        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} numberOfEvents={this.state.numberOfEvents} />
-        <NumberOfEvents updateNumberOfEvents={(e) => this.updateNumberOfEvents(e)} />
+      <h1>MEET.APP</h1>
+      <Form>
+        <Form.Row>
+          <Form.Group as={Col} >
+            <Col lg={10}>
+            <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} numberOfEvents={this.state.numberOfEvents} />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Col} >
+            <Col lg={10}>
+            <NumberOfEvents updateNumberOfEvents={(e) => this.updateNumberOfEvents(e)} />
+            </Col>
+          </Form.Group>
+        </Form.Row>
+      </Form>
+        
+
         <EventList events={this.state.events} />
       </div>
     );

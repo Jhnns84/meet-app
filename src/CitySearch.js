@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Form from 'react-bootstrap/Form'
 
 class CitySearch extends Component {
   state = {
@@ -30,7 +31,7 @@ class CitySearch extends Component {
   render() {
     return (
       <div className="CitySearch">
-        <label>Search for a City</label>
+        <label className="formLabel">Search for a City</label>
         <input
           type="text" 
           className="city"

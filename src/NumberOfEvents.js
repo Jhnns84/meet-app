@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col';
 
 class NumberOfEvents extends Component {
   state = {
@@ -21,15 +23,17 @@ class NumberOfEvents extends Component {
 
   render() {
     return (
-      <div className="NumberOfEvents">
-      <label>Choose how many events to display</label>
-        <input
+      <Form className="NumberOfEvents">
+      <Form.Label className="formLabel">Choose how many events to display</Form.Label>
+      <Col >
+        <input 
           type="number" 
           className="NumberInput"
           value={this.state.numberOfEvents}
           onChange={this.handleInputChanged}
         />
-      </div>
+        </Col>
+      </Form>
     );
   }
 }
