@@ -7,7 +7,7 @@ describe('<Event /> component', () => {
   let EventWrapper;
 
   beforeAll(() => {
-    let eventData={ mockData };
+    let eventData= mockData[0];
     EventWrapper = shallow(<Event event= { eventData } />);
   });
   
@@ -28,18 +28,18 @@ describe('<Event /> component', () => {
   });
 
   test('render showDetails-button', () => {
-    expect(EventWrapper.find('.details-button')).toHaveLength(1);
+    expect(EventWrapper.find('.details-btn')).toHaveLength(1);
   });
 
   test('expand event details', () => {
     EventWrapper.setState({ showDetails: false });
-    EventWrapper.find('.details-button').simulate("click");
+    EventWrapper.find('.details-btn').simulate("click");
     expect(EventWrapper.state("showDetails")).toBe(true);
   });
   
   test('collapse event details', () => {
     EventWrapper.setState({ showDetails: true });
-    EventWrapper.find('.details-button').simulate("click");
+    EventWrapper.find('.details-btn').simulate("click");
     expect(EventWrapper.state("showDetails")).toBe(false);
   })
 

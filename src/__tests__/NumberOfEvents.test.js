@@ -22,8 +22,11 @@ describe('NumberOfEvents /> component', () => {
   });
 
   test('change state when number input changes', () => {
-    const eventObject = { target: { value: '15'}};
+    NumberWrapper.setState({
+      numberOfEvents: 32
+    });
+    const eventObject = { target: { value: 15}};
     NumberWrapper.find('.NumberInput').simulate('change', eventObject);
-    expect(NumberWrapper.state('numberOfEvents')).toBe('15');
+    expect(NumberWrapper.state('numberOfEvents')).toBe(15);
   });
 });
