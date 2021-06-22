@@ -38,7 +38,9 @@ class Event extends Component {
             show/hide details
           </Button>
             {this.state.showDetails && (
-              <p className="description">{event.description}</p>
+              <div className="event__Details">
+                <p className="description">{event.description}</p>
+              </div>
             )}
             </Card.Body>
         </Card>
