@@ -20,6 +20,7 @@ class App extends Component {
   };
 
   updateEvents = (location, numberOfEvents) => {
+    
     getEvents().then((events) => {
       const locationEvents = (location === 'all') ?
       events.slice(0, numberOfEvents) :
