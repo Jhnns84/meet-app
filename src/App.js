@@ -45,13 +45,15 @@ class App extends Component {
   componentDidMount() {
     this.mounted = true;
     const { numberOfEvents } = this.state;
+
+
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({ events: events.slice(0, numberOfEvents), locations: extractLocations(events) });
       }
       if (!navigator.onLine) {
         this.setState({
-          infoText: 'App is offline. Showing cached events.',
+          offlineText: 'App is offline. Showing cached events.',
         });
       } else {
         return this.setState({
@@ -61,6 +63,8 @@ class App extends Component {
     });
   }
 
+  
+
   componentWillUnmount(){
     this.mounted = false;
   }
@@ -68,8 +72,8 @@ class App extends Component {
   render() {
     return (
       <div className="App"> 
+      <h1>MEET.APP</h1>
       <OfflineAlert text={this.state.offlineText} />
-      <h1>MEET.APP 1</h1>
       <Form>
         <Form.Row>
           <Form.Group as={Col} >
