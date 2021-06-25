@@ -5,8 +5,10 @@ import './nprogress.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import { getEvents, extractLocations } from './api';
+import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { OfflineAlert } from './Alert';
+import WelcomeScreen from './WelcomeScreen';
+
 
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col';
@@ -17,6 +19,7 @@ class App extends Component {
     events: [],
     locations: [], 
     numberOfEvents: 32, 
+    showWelcomeScreen: undefined,
     currentCity: 'all',
   };
 
@@ -42,25 +45,30 @@ class App extends Component {
     this.updateEvents(currentCity, eventNumber)
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.mounted = true;
     const { numberOfEvents } = this.state;
-
-
-    getEvents().then((events) => {
-      if (this.mounted) {
-        this.setState({ events: events.slice(0, numberOfEvents), locations: extractLocations(events) });
-      }
-      if (!navigator.onLine) {
-        this.setState({
-          offlineText: 'App is offline. Showing cached events.',
-        });
-      } else {
-        return this.setState({
-          offlineText:''
-        });
-      }
-    });
+    const accessToken = localStorage.getItem('access_token');
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get("code");
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    if ((code || isTokenValid) && this.mounted) {
+      getEvents().then((events) => {
+        if (this.mounted) {
+          this.setState({ events: events.slice(0, numberOfEvents), locations: extractLocations(events) });
+        }
+        if (!navigator.onLine) {
+          this.setState({
+            offlineText: 'App is offline. Showing cached events.',
+          });
+        } else {
+          return this.setState({
+            offlineText:''
+          });
+        }
+      });
+    }
   }
 
   
@@ -70,28 +78,30 @@ class App extends Component {
   }
 
   render() {
+    if (this.state.showWelcomeScreen === undefined) return <div className="App" />
+
     return (
       <div className="App"> 
-      <h1>MEET.APP</h1>
-      <OfflineAlert text={this.state.offlineText} />
-      <Form>
-        <Form.Row>
-          <Form.Group as={Col} >
-            <Col lg={10}>
-            <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} numberOfEvents={this.state.numberOfEvents} />
-            </Col>
-          </Form.Group>
+        <h1>MEET.APP</h1>
+        <OfflineAlert text={this.state.offlineText} />
+        <Form>
+          <Form.Row>
+            <Form.Group as={Col} >
+              <Col lg={10}>
+              <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} numberOfEvents={this.state.numberOfEvents} />
+              </Col>
+            </Form.Group>
 
-          <Form.Group as={Col} >
-            <Col lg={10}>
-            <NumberOfEvents updateNumberOfEvents={(e) => this.updateNumberOfEvents(e)} />
-            </Col>
-          </Form.Group>
-        </Form.Row>
-      </Form>
-        
+            <Form.Group as={Col} >
+              <Col lg={10}>
+              <NumberOfEvents updateNumberOfEvents={(e) => this.updateNumberOfEvents(e)} />
+              </Col>
+            </Form.Group>
+          </Form.Row>
+        </Form>
 
         <EventList events={this.state.events} />
+        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
       </div>
     );
   }
