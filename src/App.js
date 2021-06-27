@@ -15,6 +15,7 @@ import {
 
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 class App extends Component {
   state = {
@@ -92,7 +93,6 @@ class App extends Component {
   }
 
   render() {
-    const { locations, numberOfEvents } = this.state;
     if (this.state.showWelcomeScreen === undefined) return <div className="App" />
 
     return (
@@ -115,7 +115,7 @@ class App extends Component {
           </Form.Row>
         </Form>
         <h4>Events in each city</h4>
-        {/* <ResponsiveContainer height={400} >
+        <ResponsiveContainer height={400} >
           <ScatterChart
             width={800}
             height={400}
@@ -129,9 +129,9 @@ class App extends Component {
             <Tooltip cursor={{ strokeDasharray: '3 3' }} />
             <Scatter data={this.getData()} fill="#8884d8" />
           </ScatterChart>
-        </ResponsiveContainer> */}
+        </ResponsiveContainer>
         <EventList events={this.state.events} />
-        {/* <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} /> */}
+        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
       </div>
     );
   }
