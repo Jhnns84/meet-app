@@ -98,7 +98,7 @@ class App extends Component {
 
     return (
       <div className="App"> 
-        <h1>MEET.APP v0.9</h1>
+        <h1>MEET.APP v0.91</h1>
         <OfflineAlert text={this.state.offlineText} />
         <Form>
           <Form.Row>
