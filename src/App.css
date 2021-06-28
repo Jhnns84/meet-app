@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Work+Sans:wght@300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Work+Sans:wght@300;600&family=Roboto&display=swap');
 
 body {
   background-image: linear-gradient(to bottom right, #f9c58d, #f492f0);
@@ -91,10 +91,6 @@ input[type="number"] {
   border: 1px solid #ccc;
   border-radius: 4px;
   position: relative;
-  /* background-image: linear-gradient(to bottom right, #ebf4f5, #b5c6e0);
-  background-repeat: no-repeat;
-  background-attachment: fixed; */
-
 }
 
 .details-btn {
@@ -159,6 +155,16 @@ input[type="number"] {
   overflow: visible;
 }
 
+.WelcomeScreen {
+  position: fixed;
+  width: 90%;
+  height: 100%;
+  top: 15px;
+  background-image: linear-gradient(to bottom right, #f9c58d, #f492f0);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  }
+
 .login-button {
   color: #494949;
   text-transform: uppercase;
@@ -204,12 +210,15 @@ input[type="number"] {
 }
 .btn-text {
   float: right;
-  margin: 11px 11px 0 0;
   color: #fff;
   font-size: 14px;
   letter-spacing: 0.2px;
-  font-family: "Work Sans";
-}
+  font-family: "Roboto";
+  background-color: #4285f4;
+  width: 80%;
+  height: 100%;
+  text-align: right;
+  }
 
 .formLabel {
   min-width: 150px;

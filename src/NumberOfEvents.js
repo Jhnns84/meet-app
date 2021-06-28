@@ -35,7 +35,7 @@ class NumberOfEvents extends Component {
     return (
       <div className="NumberOfEvents">
         <ErrorAlert text={this.state.errorText} />
-      <Form.Label className="formLabel">Choose how many events to display</Form.Label>
+      <Form.Label className="formLabel">Choose number of events</Form.Label>
       <Col >
         <input 
           type="number" 
