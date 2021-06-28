@@ -16,7 +16,6 @@ import EventGenre from './EventGenre';
 
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 class App extends Component {
   state = {
@@ -34,7 +33,6 @@ class App extends Component {
       events.slice(0, numberOfEvents) :
       events.filter((event) => event.location === location);
       if (this.mounted) {
-      // const { numberOfEvents } = this.state
       this.setState({
         events: locationEvents.slice(0, numberOfEvents),
         currentCity: location, 
@@ -107,7 +105,6 @@ class App extends Component {
               <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} numberOfEvents={this.state.numberOfEvents} />
               </Col>
             </Form.Group>
-
             <Form.Group as={Col} >
               <Col lg={10}>
               <NumberOfEvents updateNumberOfEvents={(e) => this.updateNumberOfEvents(e)} />
@@ -118,7 +115,6 @@ class App extends Component {
         <div className="data-vis-wrapper">
           <EventGenre events={this.state.events} />
           <ResponsiveContainer height={400} >
-            {/* <h4>Events in each city</h4> */}
             <ScatterChart
               width={800}
               height={400}
