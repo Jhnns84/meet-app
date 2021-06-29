@@ -4,7 +4,7 @@ A serverless, progressive web application (PWA) with React using a test-driven d
 
 
 # How to use it
-For current version, navigate to https://jhnns84.github.io/meet-app/
+Navigate to https://jhnns84.github.io/meet-app/ and sign in with a google account
 
 # Tech
 The application uses
@@ -16,4 +16,7 @@ The application uses
 
 
 # HOSTING
-The app will be hosted on AWS
+The app is hosted on github pages
+
+
+![image](https://user-images.githubusercontent.com/77455115/123859229-b4c82e00-d924-11eb-9edd-4d750aa831e8.png)
